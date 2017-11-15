@@ -6,10 +6,12 @@ import android.support.v7.app.AlertDialog;
 import java.util.HashMap;
 
 /**
- * Created by Ting on 2017/11/9.
+ *
+ * @author Ting
+ * @date 2017/11/9
  */
 
-public class Orange {
+public final class Orange {
     public static Configurator init(Context context){
         getConfigs().put(Configkey.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();

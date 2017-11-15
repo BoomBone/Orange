@@ -21,7 +21,7 @@ public class Configurator {
     public static Configurator getInstance() {
         return LazyHolder.INSTANCE;
     }
-    public static void configure(){
+    public final void configure(){
         ORANGE_CONFIGS.put(Configkey.CONFIG_READY, true);
     }
 

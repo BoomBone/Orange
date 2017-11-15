@@ -1,4 +1,4 @@
-package com.dx.orange_core;
+package com.boombone7.core;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

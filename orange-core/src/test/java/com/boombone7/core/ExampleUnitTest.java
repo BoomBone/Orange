@@ -1,4 +1,4 @@
-package com.dx.orange_core;
+package com.boombone7.core;
 
 import org.junit.Test;
 
