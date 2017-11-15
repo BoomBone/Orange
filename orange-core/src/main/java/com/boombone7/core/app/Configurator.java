@@ -34,5 +34,16 @@ public class Configurator {
         return this;
     }
 
+    private void checkConfiguration(){
+        final boolean isReady = (boolean) ORANGE_CONFIGS.get(Configkey.CONFIG_READY);
+        if (!isReady){
+            throw new RuntimeException("Configuration is not ready,call configure");
+        }
+    }
 
+    @SuppressWarnings("unchecked")
+    public <T> T getConfiguration(String key){
+        checkConfiguration();
+        return (T) ORANGE_CONFIGS.get(key);
+    }
 }

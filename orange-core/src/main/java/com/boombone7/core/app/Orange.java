@@ -18,4 +18,7 @@ public class Orange {
         return Configurator.getInstance().getConfig();
     }
 
+    public static <T> T getConfiguration(String key){
+        return Configurator.getInstance().getConfiguration(key);
+    }
 }
