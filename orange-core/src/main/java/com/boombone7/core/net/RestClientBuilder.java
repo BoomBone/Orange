@@ -20,11 +20,11 @@ public class RestClientBuilder  {
 
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private String mUrl = null;
-    private IRequest mIRequest;
-    private ISuccess mISuccess;
-    private IError mIError;
-    private IFailure mIFailure;
-    private RequestBody mBody;
+    private IRequest mIRequest = null;
+    private ISuccess mISuccess = null;
+    private IError mIError = null;
+    private IFailure mIFailure = null;
+    private RequestBody mBody = null;
 
     public final RestClientBuilder url(String url) {
         this.mUrl = url;

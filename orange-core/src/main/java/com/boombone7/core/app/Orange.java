@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public final class Orange {
     public static Configurator init(Context context){
-        getConfigs().put(I.APPLICATION_CONTEXT, context.getApplicationContext());
+        getConfigs().put(I.Configkey.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
     private static HashMap<String,Object> getConfigs(){

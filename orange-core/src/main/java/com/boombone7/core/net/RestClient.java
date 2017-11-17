@@ -5,6 +5,7 @@ import com.boombone7.core.net.callback.IError;
 import com.boombone7.core.net.callback.IFailure;
 import com.boombone7.core.net.callback.IRequest;
 import com.boombone7.core.net.callback.ISuccess;
+import com.boombone7.core.net.callback.RequestCallbacks;
 
 import java.util.WeakHashMap;
 
@@ -69,7 +70,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallback() {
-        return null;
+        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR);
     }
 
 
