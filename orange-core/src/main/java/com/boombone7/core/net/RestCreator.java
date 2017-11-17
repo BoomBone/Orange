@@ -3,6 +3,7 @@ package com.boombone7.core.net;
 import com.boombone7.core.I;
 import com.boombone7.core.app.Orange;
 
+import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -15,6 +16,17 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RestCreator {
+    /**
+     * 参数容器
+     */
+    private static final class ParamsHolder{
+        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+    }
+
+    public static WeakHashMap<String,Object> getParams(){
+        return ParamsHolder.PARAMS;
+    }
+
     /**
      * 构建全局Retrofit客户端
      */
