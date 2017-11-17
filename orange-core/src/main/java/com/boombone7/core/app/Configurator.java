@@ -1,5 +1,7 @@
 package com.boombone7.core.app;
 
+import com.boombone7.core.I;
+
 import java.util.HashMap;
 
 /**
@@ -11,7 +13,7 @@ public class Configurator {
     private static final HashMap<String, Object> ORANGE_CONFIGS = new HashMap<>();
 
     private Configurator() {
-        ORANGE_CONFIGS.put(Configkey.CONFIG_READY, false);
+        ORANGE_CONFIGS.put(I.Configkey.CONFIG_READY, false);
     }
 
     private static class LazyHolder {
@@ -22,7 +24,7 @@ public class Configurator {
         return LazyHolder.INSTANCE;
     }
     public final void configure(){
-        ORANGE_CONFIGS.put(Configkey.CONFIG_READY, true);
+        ORANGE_CONFIGS.put(I.Configkey.CONFIG_READY, true);
     }
 
     final HashMap<String,Object> getConfig(){
@@ -30,12 +32,12 @@ public class Configurator {
     }
 
     public final Configurator withApplication(String applicationHost){
-        ORANGE_CONFIGS.put(Configkey.APPLICATION_HOST, applicationHost);
+        ORANGE_CONFIGS.put(I.Configkey.APPLICATION_HOST, applicationHost);
         return this;
     }
 
     private void checkConfiguration(){
-        final boolean isReady = (boolean) ORANGE_CONFIGS.get(Configkey.CONFIG_READY);
+        final boolean isReady = (boolean) ORANGE_CONFIGS.get(I.Configkey.CONFIG_READY);
         if (!isReady){
             throw new RuntimeException("Configuration is not ready,call configure");
         }

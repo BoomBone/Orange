@@ -1,7 +1,8 @@
 package com.boombone7.core.app;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
+
+import com.boombone7.core.I;
 
 import java.util.HashMap;
 
@@ -13,7 +14,7 @@ import java.util.HashMap;
 
 public final class Orange {
     public static Configurator init(Context context){
-        getConfigs().put(Configkey.APPLICATION_CONTEXT, context.getApplicationContext());
+        getConfigs().put(I.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
     private static HashMap<String,Object> getConfigs(){
