@@ -1,11 +1,15 @@
 package com.boombone7.core.net;
 
+import android.content.Context;
+
 import com.boombone7.core.I;
+import com.boombone7.core.app.Orange;
 import com.boombone7.core.net.callback.IError;
 import com.boombone7.core.net.callback.IFailure;
 import com.boombone7.core.net.callback.IRequest;
 import com.boombone7.core.net.callback.ISuccess;
 import com.boombone7.core.net.callback.RequestCallbacks;
+import com.boombone7.core.ui.OrangeLoader;
 
 import java.util.WeakHashMap;
 
@@ -26,6 +30,8 @@ public class RestClient {
     private final IError ERROR;
     private final IFailure FAILURE;
     private final RequestBody BODY;
+    private final String STYLE;
+    private final Context CONTEXT;
 
     public RestClient(String url,
                       WeakHashMap<String, Object> params,
@@ -33,13 +39,17 @@ public class RestClient {
                       ISuccess isuccess,
                       IError ierror,
                       IFailure ifailure,
-                      RequestBody body) {
+                      RequestBody body,
+                      Context context,
+                      String style) {
         this.URL = url;
         this.REQUEST = irequest;
         this.SUCCESS = isuccess;
         this.FAILURE = ifailure;
         this.ERROR = ierror;
         this.BODY = body;
+        this.STYLE = style;
+        this.CONTEXT = context;
     }
 
     public static RestClientBuilder builder() {
@@ -51,6 +61,10 @@ public class RestClient {
         Call<String> call = null;
         if (REQUEST != null) {
             REQUEST.onRequestStart();
+        }
+
+        if (STYLE != null) {
+            OrangeLoader.showLoading(CONTEXT, STYLE);
         }
         switch (method) {
             case I.HttpMethod.GET:
@@ -90,7 +104,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallback() {
-        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR);
+        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR, STYLE);
     }
 
 

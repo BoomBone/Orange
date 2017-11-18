@@ -1,6 +1,7 @@
 package com.boombone7.core.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import com.boombone7.core.I;
 
@@ -27,5 +28,9 @@ public final class Orange {
 
     public static Context getApplicationContext() {
         return getConfiguration(I.Configkey.APPLICATION_CONTEXT);
+    }
+
+    public static Handler getHandler() {
+        return getConfiguration(I.Configkey.HANDLER);
     }
 }

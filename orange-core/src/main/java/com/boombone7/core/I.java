@@ -10,6 +10,8 @@ public interface I {
         String CONFIG_READY = "CONFIG_READY";
         String APPLICATION_CONTEXT = "APPLICATION_CONTEXT";
         String APPLICATION_HOST = "APPLICATION_HOST";
+        String LOADER_DELAYED = "LOADER_DELAYED";
+        String HANDLER = "HANDLER";
     }
 
     interface HttpMethod {

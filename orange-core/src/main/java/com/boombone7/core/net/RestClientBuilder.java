@@ -1,5 +1,8 @@
 package com.boombone7.core.net;
 
+import android.content.Context;
+
+import com.boombone7.core.I;
 import com.boombone7.core.net.callback.IError;
 import com.boombone7.core.net.callback.IFailure;
 import com.boombone7.core.net.callback.IRequest;
@@ -25,6 +28,8 @@ public class RestClientBuilder  {
     private IError mIError = null;
     private IFailure mIFailure = null;
     private RequestBody mBody = null;
+    private String mStyle = null;
+    private Context mContext = null;
 
     public final RestClientBuilder url(String url) {
         this.mUrl = url;
@@ -65,7 +70,19 @@ public class RestClientBuilder  {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context, String style) {
+        this.mContext = context;
+        this.mStyle = style;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mStyle = I.LoaderStyle.BallClipRotatePulseIndicator;
+        return this;
+    }
+
     public final RestClient build(){
-        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIError, mIFailure, mBody);
+        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIError, mIFailure, mBody, mContext,mStyle);
     }
 }
