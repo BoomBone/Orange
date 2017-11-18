@@ -7,7 +7,6 @@
 - RestService service = retrofit.create(RestService.class);
 - Call<String> call = service.get();
 - call.enqueue(CallBack...)
-****
 ## 包含的类
 RestClient
 ***
@@ -22,4 +21,6 @@ RestService
 2.IError
 3.IFailure
 4.IRequest
-
+### 引用库
+[retrofit](https://github.com/square/retrofit)
+[AVLoadingIndicatorView](https://github.com/81813780/AVLoadingIndicatorView)
