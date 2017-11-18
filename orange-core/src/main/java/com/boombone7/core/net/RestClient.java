@@ -14,7 +14,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
- *
  * @author Ting
  * @date 2017/11/15
  */
@@ -43,30 +42,51 @@ public class RestClient {
         this.BODY = body;
     }
 
-    public static RestClientBuilder builder(){
+    public static RestClientBuilder builder() {
         return new RestClientBuilder();
-    }
-
-    public final void get(){
-        request(I.HttpMethod.GET);
     }
 
     private void request(String method) {
         final RestService service = RestCreator.getRestService();
         Call<String> call = null;
-        if(REQUEST!=null){
+        if (REQUEST != null) {
             REQUEST.onRequestStart();
         }
-        switch (method){
+        switch (method) {
             case I.HttpMethod.GET:
                 call = service.get(URL, PARAMS);
+                break;
+            case I.HttpMethod.POST:
+                call = service.post(URL, PARAMS);
+                break;
+            case I.HttpMethod.PUT:
+                call = service.put(URL, PARAMS);
+                break;
+            case I.HttpMethod.DELETE:
+                call = service.delete(URL, PARAMS);
                 break;
             default:
                 break;
         }
-        if (call!=null){
+        if (call != null) {
             call.enqueue(getRequestCallback());
         }
+    }
+
+    public final void get() {
+        request(I.HttpMethod.GET);
+    }
+
+    public final void put() {
+        request(I.HttpMethod.PUT);
+    }
+
+    public final void post() {
+        request(I.HttpMethod.POST);
+    }
+
+    public final void delete() {
+        request(I.HttpMethod.DELETE);
     }
 
     private Callback<String> getRequestCallback() {
