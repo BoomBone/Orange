@@ -8,6 +8,7 @@ import com.boombone7.core.net.callback.IFailure;
 import com.boombone7.core.net.callback.IRequest;
 import com.boombone7.core.net.callback.ISuccess;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -30,6 +31,11 @@ public class RestClientBuilder  {
     private RequestBody mBody = null;
     private String mStyle = null;
     private Context mContext = null;
+    private File mFile = null;
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
+
 
     public final RestClientBuilder url(String url) {
         this.mUrl = url;
@@ -82,7 +88,34 @@ public class RestClientBuilder  {
         return this;
     }
 
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+
+    public final RestClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
+
+    public final RestClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    public final RestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
     public final RestClient build(){
-        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIError, mIFailure, mBody, mContext,mStyle);
+        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess
+                , mIError, mIFailure, mBody, mContext
+                ,mStyle,mFile,mDownloadDir,mExtension,mName);
     }
 }
