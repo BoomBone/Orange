@@ -4,7 +4,10 @@ import android.os.Handler;
 
 import com.boombone7.core.I;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * @author Ting
@@ -14,6 +17,7 @@ import java.util.HashMap;
 public class Configurator {
     private static final HashMap<String, Object> ORANGE_CONFIGS = new HashMap<>();
     private static final Handler HANDLER = new Handler();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         ORANGE_CONFIGS.put(I.Configkey.CONFIG_READY, false);
@@ -42,6 +46,18 @@ public class Configurator {
 
     public final Configurator withLoaderDelayed(long delayed) {
         ORANGE_CONFIGS.put(I.Configkey.LOADER_DELAYED, delayed);
+        return this;
+    }
+
+    public final Configurator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        ORANGE_CONFIGS.put(I.Configkey.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        ORANGE_CONFIGS.put(I.Configkey.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 

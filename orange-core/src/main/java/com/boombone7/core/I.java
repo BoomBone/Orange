@@ -12,6 +12,7 @@ public interface I {
         String APPLICATION_HOST = "APPLICATION_HOST";
         String LOADER_DELAYED = "LOADER_DELAYED";
         String HANDLER = "HANDLER";
+        String INTERCEPTOR = "INTERCEPTOR";
     }
 
     interface HttpMethod {

@@ -3,9 +3,11 @@ package com.boombone7.core.net;
 import com.boombone7.core.I;
 import com.boombone7.core.app.Orange;
 
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -44,7 +46,18 @@ public class RestCreator {
      */
     private static final class OkHttpHolder {
         private static final int TIME_OUT = 60;
-        private static final OkHttpClient OKHTTP_CLIENT = new OkHttpClient.Builder()
+        private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
+        private static final ArrayList<Interceptor> INTERCEPTORS = Orange.getConfiguration(I.Configkey.INTERCEPTOR);
+
+        private static OkHttpClient.Builder addInterceptor(){
+            if (INTERCEPTORS!=null&&!INTERCEPTORS.isEmpty()){
+                for (Interceptor interceptor:INTERCEPTORS) {
+                    BUILDER.addInterceptor(interceptor);
+                }
+            }
+            return BUILDER;
+        }
+        private static final OkHttpClient OKHTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .build();
     }
