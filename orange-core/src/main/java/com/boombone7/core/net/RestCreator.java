@@ -33,7 +33,7 @@ public class RestCreator {
      * 构建全局Retrofit客户端
      */
     private static final class RetrofitHolder {
-        private static final String BASE_URL = Orange.getConfiguration(I.Configkey.APPLICATION_HOST);
+        private static final String BASE_URL = Orange.getConfiguration(I.Configkey.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())

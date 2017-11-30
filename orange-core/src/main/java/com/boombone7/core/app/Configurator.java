@@ -39,8 +39,8 @@ public class Configurator {
         return ORANGE_CONFIGS;
     }
 
-    public final Configurator withApplication(String applicationHost){
-        ORANGE_CONFIGS.put(I.Configkey.APPLICATION_HOST, applicationHost);
+    public final Configurator withApiHost(String apiHost){
+        ORANGE_CONFIGS.put(I.Configkey.API_HOST, apiHost);
         return this;
     }
 

@@ -3,6 +3,7 @@ package com.boombone7.orange;
 import android.app.Application;
 
 import com.boombone7.core.app.Orange;
+import com.boombone7.core.net.interceptors.DebugInterceptor;
 
 /**
  *
@@ -15,7 +16,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Orange.init(getApplicationContext())
-                .withApplication("http://news.baidu.com/")
+                .withApiHost("http://127.0.0.1/")
+                .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
     }
 }
