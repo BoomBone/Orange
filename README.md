@@ -3,7 +3,7 @@
 
 **简介：** 对Retrofit2.0的封装  
  
-##集成方式
+## 集成方式
 在Project下面的gradle添加
 ```
 dependencies {
