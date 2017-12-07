@@ -1,6 +1,8 @@
 # Orange
-**简介：** 对Retrofit2.0的封装 
-[![](https://www.jitpack.io/v/BoomBone/Orange.svg)](https://www.jitpack.io/#BoomBone/Orange)
+[![](https://www.jitpack.io/v/BoomBone/Orange.svg)](https://www.jitpack.io/#BoomBone/Orange)  
+
+**简介：** 对Retrofit2.0的封装  
+ 
 ##集成方式
 在Project下面的gradle添加
 ```
