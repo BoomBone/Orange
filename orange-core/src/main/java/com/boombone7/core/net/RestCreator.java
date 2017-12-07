@@ -2,6 +2,7 @@ package com.boombone7.core.net;
 
 import com.boombone7.core.I;
 import com.boombone7.core.app.Orange;
+import com.boombone7.core.net.rx.RxRestService;
 
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
@@ -37,6 +39,7 @@ public class RestCreator {
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(OkHttpHolder.OKHTTP_CLIENT)
                 .build();
     }
@@ -62,6 +65,9 @@ public class RestCreator {
                 .build();
     }
 
+    /**
+     * Service接口
+     */
     private static final class ServiceHolder {
         private static final RestService REST_SERVICE =
                 RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
@@ -69,6 +75,18 @@ public class RestCreator {
 
     public static RestService getRestService() {
         return ServiceHolder.REST_SERVICE;
+    }
+
+    /**
+     * RxService接口
+     */
+    private static final class RxServiceHolder {
+        private static final RxRestService REST_SERVICE =
+                RetrofitHolder.RETROFIT_CLIENT.create(RxRestService.class);
+    }
+
+    public static RxRestService getRxRestService() {
+        return RxServiceHolder.REST_SERVICE;
     }
 
 

@@ -9,6 +9,13 @@ import android.widget.Toast;
 
 import com.boombone7.core.net.RestClient;
 import com.boombone7.core.net.callback.ISuccess;
+import com.boombone7.core.net.rx.RxRestClient;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -33,5 +40,35 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build()
                 .get();
+    }
+
+    public void onRxClick(View view) {
+        RxRestClient.builder()
+                .url("http://127.0.0.1/index")
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
