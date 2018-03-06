@@ -8,10 +8,11 @@
 ```
 allprojects {
     repositories {
-        
+        ~
         maven { url "https://jitpack.io" }
     }
 }
+```
 在app的gradle添加
 ```
 dependencies {
