@@ -6,10 +6,12 @@
 ## 集成方式
 在Project下面的gradle添加
 ```
-dependencies {
-	        compile 'com.github.BoomBone:Orange:1.0.0'
-	}
-```
+allprojects {
+    repositories {
+        ---
+        maven { url "https://jitpack.io" }
+    }
+}
 在app的gradle添加
 ```
 dependencies {
